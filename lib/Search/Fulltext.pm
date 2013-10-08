@@ -1,8 +1,11 @@
 package Search::Fulltext;
-
-use 5.006;
 use strict;
-use warnings FATAL => 'all';
+use warnings;
+
+1;
+__END__
+
+=encoding utf8
 
 =head1 NAME
 
@@ -137,5 +140,3 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 =cut
-
-1; # End of Search::Fulltext
