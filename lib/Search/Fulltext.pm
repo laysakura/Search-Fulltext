@@ -2,6 +2,27 @@ package Search::Fulltext;
 use strict;
 use warnings;
 
+use Carp;
+
+sub new {
+    my ($class, @args) = @_;
+    my %args = ref $args[0] eq 'HASH' ? %{$args[0]} : @args;
+    unless ($args{docs}) {
+        Carp::croak("'docs' is required for creating new instance of $class");
+    }
+
+    $args{index_to}  = ":memory:" unless defined $args{index_to};
+    $args{tokenizer} = "simple"   unless defined $args{simple};
+
+    bless {
+        %args
+    }, $class;
+}
+
+sub search {
+    return [0, 2];
+}
+
 1;
 __END__
 
