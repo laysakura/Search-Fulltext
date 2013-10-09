@@ -44,7 +44,7 @@ sub _make_fts4_index {
     my $dbh       = $self->{dbh};
     my $tokenizer = $self->{tokenizer};
 
-    $dbh->do("DROP TABLE IF EXISTS " . TABLE) or die DBI::errstr;
+    $dbh->do("DROP TABLE IF EXISTS " . TABLE) or die $dbh->errstr;
     $dbh->do("CREATE VIRTUAL TABLE " . TABLE . " USING fts4(" . CONTENT_COL . ", tokenize=$tokenizer)")
         or die $dbh->errstr;
 
@@ -67,8 +67,9 @@ use Data::Dumper;
 sub search_docids {
     my ($self, $query) = @_;
     my $dbh            = $self->{dbh};
-    my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'");
-    $sth->execute;
+    my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'")
+        or die $dbh->errstr;
+    $sth->execute or die $dbh->errstr;
     my @docids = ();
     while (my @row = $sth->fetchrow_array) {
         push @docids, $row[0];
