@@ -137,7 +137,7 @@ Version 0.01
 
 =over 4
 
-=item 0.01  2013-10-09 / 21:23:17 JST
+=item B<0.01>  2013-10-09 / 21:23:17 JST
 
 First release. Has SQLite's FTS4 as a backend and supports array of string as a document.
 
