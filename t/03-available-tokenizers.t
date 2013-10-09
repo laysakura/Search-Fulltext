@@ -4,7 +4,6 @@ use utf8;
 use Test::More;
 
 use Search::Fulltext;
-use Search::Fulltext::TestSupport;
 
 plan tests => 2;
 
