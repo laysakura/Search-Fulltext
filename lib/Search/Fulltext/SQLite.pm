@@ -67,10 +67,12 @@ use Data::Dumper;
 sub search_docids {
     my ($self, $query) = @_;
     my $dbh            = $self->{dbh};
-    # TODO: use select/fetch
-    my $results = $dbh->selectall_arrayref("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'");
+    my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'");
+    $sth->execute;
     my @docids = ();
-    push @docids, $_->[0] foreach (@{$results});
+    while (my @row = $sth->fetchrow_array) {
+        push @docids, $row[0];
+    }
     \@docids;
 }
 
