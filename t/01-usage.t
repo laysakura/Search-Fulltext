@@ -10,10 +10,9 @@ plan tests => 3;
 
 my $query = 'beer';
 my @docs = (
-    'Beer makes people happy',
-    'Wine makes people saticefied',  # does not include beer
     'I like beer the best',
-    'Buy fruits, beer, and eggs',    # 'beer,' does not match to 'beer'
+    'Wine makes people saticefied',  # does not include beer
+    'Beer makes people happy',
 );
 
 # Common usage

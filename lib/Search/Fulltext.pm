@@ -29,7 +29,7 @@ sub search {
     return [] unless $query;
 
     my $sqliteh = $self->{sqliteh};
-    $sqliteh->search_docids($query);   # [0, 2]
+    $sqliteh->search_docids($query);
 }
 
 1;

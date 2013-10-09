@@ -63,6 +63,17 @@ sub _make_fts4_index {
     $dbh->commit;
 }
 
+use Data::Dumper;
+sub search_docids {
+    my ($self, $query) = @_;
+    my $dbh            = $self->{dbh};
+    # TODO: use select/fetch
+    my $results = $dbh->selectall_arrayref("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'");
+    my @docids = ();
+    push @docids, $_->[0] foreach (@{$results});
+    \@docids;
+}
+
 sub DESTROY {
     my $self = shift;
     $self->{dbh}->disconnect;

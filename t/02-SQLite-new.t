@@ -26,7 +26,7 @@ my @docs = (
     compare_array_with_column(
         \@docs,
         $sqliteh->{dbh},
-        Search::Fulltext::SQLite::TABLE, Search::Fulltext::SQLite::COLUMN,
+        Search::Fulltext::SQLite::TABLE, Search::Fulltext::SQLite::CONTENT_COL,
     );
 }
 
@@ -41,7 +41,7 @@ my @docs = (
     compare_array_with_column(
         \@docs,
         $sqliteh->{dbh},
-        Search::Fulltext::SQLite::TABLE, Search::Fulltext::SQLite::COLUMN,
+        Search::Fulltext::SQLite::TABLE, Search::Fulltext::SQLite::CONTENT_COL,
     );
 }
 
