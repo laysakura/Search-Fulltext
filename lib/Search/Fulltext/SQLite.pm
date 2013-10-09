@@ -6,8 +6,9 @@ use utf8;
 use DBI;
 
 use constant {
-    TABLE  => 'fts4table',
-    COLUMN => 'content',
+    TABLE       => 'fts4table',
+    CONTENT_COL => 'content',
+    DOCID_COL   => 'docid',
 };
 
 sub _make_dbh {
@@ -44,14 +45,21 @@ sub _make_fts4_index {
     my $tokenizer = $self->{tokenizer};
 
     $dbh->do("DROP TABLE IF EXISTS " . TABLE) or die DBI::errstr;
-    $dbh->do("CREATE VIRTUAL TABLE " . TABLE . " USING fts4(" . COLUMN . ", tokenize=$tokenizer)") or die DBI::errstr;
+    $dbh->do("CREATE VIRTUAL TABLE " . TABLE . " USING fts4(" . CONTENT_COL . ", tokenize=$tokenizer)")
+        or die $dbh->errstr;
 
     $dbh->begin_work;
-    $dbh->do("INSERT INTO " . TABLE . " (" . COLUMN . ") VALUES ('$_')") foreach (@{$self->{docs}});
+    foreach (@{$self->{docs}}) {
+        $dbh->do("INSERT INTO " . TABLE . " (" . CONTENT_COL . ") VALUES ('$_')")
+            or die $dbh->errstr;
+    }
     # FIXME: This code must be faster but produce segmentation fault...
-    # my $sth = $dbh->prepare("INSERT INTO " . TABLE . " (content) VALUES (?)");
-    # $sth->execute($_) foreach (@{$docs});
-    # $sth->finish;
+    # foreach (@{$self->{docs}}) {
+    #     my $sth = $dbh->prepare("INSERT INTO " . TABLE . " (" . CONTENT_COL . ") VALUES ('?')")
+    #         or die $dbh->errstr;
+    #     $sth->execute($_) foreach (@{$self->{docs}});
+    #     $sth->finish;
+    # }
     $dbh->commit;
 }
 

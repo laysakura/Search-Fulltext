@@ -28,7 +28,8 @@ sub search {
     my ($self, $query) = @_;
     return [] unless $query;
 
-    return [0, 2];
+    my $sqliteh = $self->{sqliteh};
+    $sqliteh->search_docids($query);   # [0, 2]
 }
 
 1;
