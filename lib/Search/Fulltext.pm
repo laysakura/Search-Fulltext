@@ -146,7 +146,9 @@ First release. Has SQLite's FTS4 as a backend and supports array of string as a 
 =head1 TODO
 
 - Pluggable indexer (not only SQLite)
+
 - Pluggable tokenizer
+
 - Japanese tokenizer
 
 =head1 AUTHOR
