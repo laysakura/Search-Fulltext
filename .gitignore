@@ -6,7 +6,7 @@ Makefile.old
 Build
 Build.bat
 META.*
-MYMETA.*
+MYMETA.yml
 .build/
 _build/
 cover_db/
