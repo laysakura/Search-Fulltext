@@ -1,5 +1,8 @@
 Revision history for Search::Fulltext
 
+0.04  2013-10-10 08:39:43 JST
+        - Changed license description: artisistic => artistic_2
+
 0.03  2013-10-10 01:53:42 JST
         - Added META.yml
 

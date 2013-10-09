@@ -7,7 +7,7 @@ use inc::Module::Install;
 name     'Search-Fulltext';
 author   'Sho Nakatani <lay.sakura@gmail.com>';
 all_from 'lib/Search/Fulltext.pm',
-license  'artistic',
+license  'artistic_2',
 
 requires 'DBI';
 requires 'DBD::SQLite' => '1.30_01';
