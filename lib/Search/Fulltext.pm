@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -131,17 +131,7 @@ See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 
 =head1 VERSION
 
-Version 0.01
-
-=head1 CHANGES
-
-=over 4
-
-=item v0.01 : 2013-10-09 / 21:23:17 JST
-
-First release. Has SQLite's FTS4 as a backend and supports array of string as a document.
-
-=back
+Version 0.02
 
 =head1 TODO
 
