@@ -116,6 +116,9 @@ Query to search from documents.
 The simplest query would be a term.
 
     my $results = $fts->search('beer');
+
+Other queries below and combination of them can be also used.
+
     my $results = $fts->search('beer AND happy');
     my $results = $fts->search('saticefied OR happy');
     my $results = $fts->search('people NOT beer');
@@ -124,7 +127,6 @@ The simplest query would be a term.
     my $results = $fts->search('beer NEAR happy');
     my $results = $fts->search('beer NEAR/1 happy');
 
-Other queries below and combination of them can be also used.
 See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 
 =back
