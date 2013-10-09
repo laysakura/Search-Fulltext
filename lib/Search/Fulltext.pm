@@ -145,7 +145,7 @@ First release. Has SQLite's FTS4 as a backend and supports array of string as a 
 
 =head1 AUTHOR
 
-Sho Nakatani, C<< <lay.sakura at gmail.com> >>
+Sho Nakatani, <lay.sakura at gmail.com>
 
 =head1 LICENSE AND COPYRIGHT
 
