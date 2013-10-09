@@ -63,7 +63,6 @@ sub _make_fts4_index {
     $dbh->commit;
 }
 
-use Data::Dumper;
 sub search_docids {
     my ($self, $query) = @_;
     my $dbh            = $self->{dbh};
