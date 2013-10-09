@@ -2,6 +2,7 @@ MANIFEST
 Makefile.PL
 README.pod
 Changes
+META.yml
 lib/Search/Fulltext.pm
 lib/Search/Fulltext/SQLite.pm
 lib/Search/Fulltext/TestSupport.pm

@@ -1,5 +1,8 @@
 Revision history for Search::Fulltext
 
+0.03  2013-10-10 01:53:42 JST
+        - Added META.yml
+
 0.02  2013-10-10 01:08:27 JST
         - Made 'Changes' file instead of writing it into POD
         - Other file structure changes
