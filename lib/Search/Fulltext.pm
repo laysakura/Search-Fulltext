@@ -1,18 +1,23 @@
 package Search::Fulltext;
 use strict;
 use warnings;
+use utf8;
 
-use Carp;
+our $VERSION = '0.01';
+use Search::Fulltext::SQLite;
 
 sub new {
     my ($class, @args) = @_;
     my %args = ref $args[0] eq 'HASH' ? %{$args[0]} : @args;
-    unless ($args{docs}) {
-        Carp::croak("'docs' is required for creating new instance of $class");
-    }
 
-    $args{index_to}  = ":memory:" unless defined $args{index_to};
-    $args{tokenizer} = "simple"   unless defined $args{simple};
+    unless ($args{docs}) { die "'docs' is required for creating new instance of $class" }
+    $args{index_file} = ":memory:" unless defined $args{index_file};
+    $args{tokenizer}  = "simple"   unless defined $args{tokenizer};
+    $args{sqliteh}    = Search::Fulltext::SQLite::->new(
+        docs      => $args{docs},
+        dbfile    => $args{index_file},
+        tokenizer => $args{tokenizer},
+    );
 
     bless {
         %args
@@ -20,6 +25,9 @@ sub new {
 }
 
 sub search {
+    my ($self, $query) = @_;
+    return [] unless $query;
+
     return [0, 2];
 }
 
@@ -37,8 +45,6 @@ Search::Fulltext - The great new Search::Fulltext!
 Version 0.01
 
 =cut
-
-our $VERSION = '0.01';
 
 
 =head1 SYNOPSIS
