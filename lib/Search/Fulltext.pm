@@ -39,39 +39,37 @@ __END__
 
 =head1 NAME
 
-Search::Fulltext - The great new Search::Fulltext!
+Search::Fulltext - Fulltext search module
 
 =head1 VERSION
 
-Version 0.01
-
-=cut
-
+Version $VERSION
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+    my $query = 'beer';
+    my @docs = (
+        'I like beer the best',
+        'Wine makes people saticefied',  # does not include beer
+        'Beer makes people happy',
+    );
+    
+    my $fts = Search::Fulltext->new({
+        docs => \@docs,
+    });
+    my $results = $fts->search($query);
+    is_deeply($results, [0, 2]);
 
-Perhaps a little code snippet.
+=head1 METHODS
 
-    use Search::Fulltext;
+=head2 Search::Fulltext->new
 
-    my $foo = Search::Fulltext->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 SUBROUTINES/METHODS
-
-=head2 function1
-
-=cut
+=pod
 
 sub function1 {
 }
+
+=cut
 
 =head2 function2
 
@@ -83,15 +81,6 @@ sub function2 {
 =head1 AUTHOR
 
 Sho Nakatani, C<< <lay.sakura at gmail.com> >>
-
-=head1 BUGS
-
-Please report any bugs or feature requests to C<bug-search-fulltext at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Search-Fulltext>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
-
 
 =head1 SUPPORT
 
@@ -121,10 +110,6 @@ L<http://cpanratings.perl.org/d/Search-Fulltext>
 L<http://search.cpan.org/dist/Search-Fulltext/>
 
 =back
-
-
-=head1 ACKNOWLEDGEMENTS
-
 
 =head1 LICENSE AND COPYRIGHT
 
