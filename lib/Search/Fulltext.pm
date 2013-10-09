@@ -60,56 +60,43 @@ Version $VERSION
     my $results = $fts->search($query);
     is_deeply($results, [0, 2]);
 
+=head1 DESCRIPTION
+
+Search::Fulltext is a fulltext search module. It can be used in a few steps.
+
+Languages not separated by white spaces (unlike English, like Japanese) are not supported yet,
+although future version would support it.
+
+Currently SQLite's FTS4 is used as an indexer.
+Various queries supported by FTS4 (AND, OR, NEAR, ...) are fully provided.
+
 =head1 METHODS
 
 =head2 Search::Fulltext->new
 
 =pod
 
-sub function1 {
-}
+Creates fulltext index for documents.
+
+=over 4
+
+=item C<@param docs>       [required]  Reference to array whose contents are document to be searched.
+
+=item C<@param index_file> [optional]  File to write fulltext index. By default, on-memory index is used.
+
+=back
 
 =cut
 
-=head2 function2
+=head2 Search::Fulltext->search
+
+=pod
 
 =cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
 Sho Nakatani, C<< <lay.sakura at gmail.com> >>
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Search::Fulltext
-
-
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Search-Fulltext>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Search-Fulltext>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Search-Fulltext>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Search-Fulltext/>
-
-=back
 
 =head1 LICENSE AND COPYRIGHT
 
