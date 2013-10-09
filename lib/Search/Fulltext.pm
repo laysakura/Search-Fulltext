@@ -41,10 +41,6 @@ __END__
 
 Search::Fulltext - Fulltext search module
 
-=head1 VERSION
-
-Version $VERSION
-
 =head1 SYNOPSIS
 
     my $query = 'beer';
@@ -80,17 +76,17 @@ Creates fulltext index for documents.
 
 =over 4
 
-=item C<@param docs>
+=item C<@param docs> B<[required]>
 
-[required] Reference to array whose contents are document to be searched.
+Reference to array whose contents are document to be searched.
 
-=item C<@param index_file>
+=item C<@param index_file> B<[optional]>
 
-[optional] File path to write fulltext index. By default, on-memory index is used.
+File path to write fulltext index. By default, on-memory index is used.
 
-=item C<@param tokenizer>
+=item C<@param tokenizer> B<[optional]>
 
-[optional] Tokenizer name to use. 'simple' (default) and 'porter' is supported in the current version.
+Tokenizer name to use. 'simple' (default) and 'porter' is supported in the current version.
 See L<http://www.sqlite.org/fts3.html#tokenizer> for more details on FTS4 tokenizers.
 Future release would support Japanese tokenizer.
 
@@ -132,6 +128,20 @@ See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 =back
 
 =cut
+
+=head1 VERSION
+
+Version 0.01
+
+=head1 CHANGES
+
+=over 4
+
+=item 0.01
+
+First release. Has SQLite's FTS4 as a backend and supports array of string as a document.
+
+=back
 
 =head1 AUTHOR
 
