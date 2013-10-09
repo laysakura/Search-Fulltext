@@ -58,7 +58,7 @@ Version $VERSION
         docs => \@docs,
     });
     my $results = $fts->search($query);
-    is_deeply($results, [0, 2]);
+    is_deeply($results, [0, 2]);         # 1st & 3rd doc include 'beer'
 
 =head1 DESCRIPTION
 
@@ -80,9 +80,19 @@ Creates fulltext index for documents.
 
 =over 4
 
-=item C<@param docs>       [required]  Reference to array whose contents are document to be searched.
+=item C<@param docs>
 
-=item C<@param index_file> [optional]  File to write fulltext index. By default, on-memory index is used.
+[required] Reference to array whose contents are document to be searched.
+
+=item C<@param index_file>
+
+[optional] File path to write fulltext index. By default, on-memory index is used.
+
+=item C<@param tokenizer>
+
+[optional] Tokenizer name to use. 'simple' (default) and 'porter' is supported in the current version.
+See L<http://www.sqlite.org/fts3.html#tokenizer> for more details on FTS4 tokenizers.
+Future release would support Japanese tokenizer.
 
 =back
 
@@ -90,7 +100,34 @@ Creates fulltext index for documents.
 
 =head2 Search::Fulltext->search
 
+Search terms in documents by query language.
+
 =pod
+
+=over 4
+
+=item C<@returns>
+
+Array of indexes of C<docs> passed through C<Search::Fulltext->new> in which C<query> is matched.
+
+=item C<@param query>
+
+Query to search from documents.
+The simplest query would be a term.
+
+    my $results = $fts->search('beer');
+    my $results = $fts->search('beer AND happy');
+    my $results = $fts->search('saticefied OR happy');
+    my $results = $fts->search('people NOT beer');
+    my $results = $fts->search('make*');
+    my $results = $fts->search('"makes people"');
+    my $results = $fts->search('beer NEAR happy');
+    my $results = $fts->search('beer NEAR/1 happy');
+
+Other queries below and combination of them can be also used.
+See L<http://www.sqlite.org/fts3.html#section_3> for detail.
+
+=back
 
 =cut
 
