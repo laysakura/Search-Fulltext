@@ -66,9 +66,9 @@ sub _make_fts4_index {
 sub search_docids {
     my ($self, $query) = @_;
     my $dbh            = $self->{dbh};
-    my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH '$query'")
+    my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH ?")
         or die $dbh->errstr;
-    $sth->execute or die $dbh->errstr;
+    $sth->execute($query) or die $dbh->errstr;
     my @docids = ();
     while (my @row = $sth->fetchrow_array) {
         push @docids, $row[0];
