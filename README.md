@@ -54,7 +54,7 @@ Search terms in documents by query language.
 
 - `@returns`
 
-    Array of indexes of `docs` passed through `Search::Fulltext-\`new> in which `query` is matched.
+    Array of indexes of `docs` passed through `Search::Fulltext->new` in which `query` is matched.
 
 - `@param query`
 
@@ -74,6 +74,10 @@ Search terms in documents by query language.
         my $results = $fts->search('beer NEAR/1 happy');
 
     See [http://www.sqlite.org/fts3.html\#section\_3](http://www.sqlite.org/fts3.html\#section\_3) for detail.
+
+# SUPPORTS
+
+Bug reports and pull requests are welcome at [https://github.com/laysakura/Search-Fulltext](https://github.com/laysakura/Search-Fulltext) !
 
 # VERSION
 
