@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -131,11 +131,9 @@ See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =head1 TODO
-
-- Pluggable indexer (not only SQLite)
 
 - Pluggable tokenizer
 
