@@ -104,7 +104,7 @@ Search terms in documents by query language.
 
 =item C<@returns>
 
-Array of indexes of C<docs> passed through C<Search::Fulltext-\>new> in which C<query> is matched.
+Array of indexes of C<docs> passed through C<< Search::Fulltext->new >> in which C<query> is matched.
 
 =item C<@param query>
 
@@ -128,6 +128,10 @@ See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 =back
 
 =cut
+
+=head1 SUPPORTS
+
+Bug reports and pull requests are welcome at L<https://github.com/laysakura/Search-Fulltext> !
 
 =head1 VERSION
 
