@@ -77,11 +77,9 @@ Search terms in documents by query language.
 
 # VERSION
 
-Version 0.04
+Version 0.05
 
 # TODO
-
-\- Pluggable indexer (not only SQLite)
 
 \- Pluggable tokenizer
 

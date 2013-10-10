@@ -28,7 +28,6 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.36",
             "File::Temp" : "0",
             "Test::Exception" : "0",
             "Test::More" : "0"
@@ -68,5 +67,5 @@
          "web" : "https://github.com/laysakura/Search-Fulltext"
       }
    },
-   "version" : "0.04"
+   "version" : "0.05"
 }
