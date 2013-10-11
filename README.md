@@ -4,6 +4,9 @@ Search::Fulltext - Fulltext search module
 
 # SYNOPSIS
 
+    use Search::Fulltext;
+    
+
     my $query = 'beer';
     my @docs = (
         'I like beer the best',
@@ -20,13 +23,16 @@ Search::Fulltext - Fulltext search module
 
 # DESCRIPTION
 
-Search::Fulltext is a fulltext search module. It can be used in a few steps.
+[Search::Fulltext](http://search.cpan.org/perldoc?Search::Fulltext) is a fulltext search module. It can be used in a few steps.
 
-Languages not separated by white spaces (unlike English, like Japanese) are not supported yet,
-although future version would support it.
+[Search::Fulltext](http://search.cpan.org/perldoc?Search::Fulltext) has __pluggable tokenizer__ feature, which possibly provides fulltext search for any language.
+Currently, English and Japanese fulltext search are officially supported,
+although any other languages which have spaces for separating words could be also used.
+See ["CUSTOM TOKENIZERS"](#CUSTOM TOKENIZERS) section to learn how to search non-English languages.
 
-Currently SQLite's FTS4 is used as an indexer.
-Various queries supported by FTS4 (AND, OR, NEAR, ...) are fully provided.
+__SQLite__'s __FTS4__ is used as an indexer.
+Various queries supported by FTS4 (`AND`, `OR`, `NEAR`, ...) are fully provided.
+See [Search::Fulltext->search](http://search.cpan.org/perldoc?Search::Fulltext->search) section for types of queries.
 
 # METHODS
 
@@ -44,9 +50,14 @@ Creates fulltext index for documents.
 
 - `@param tokenizer` __\[optional\]__
 
-    Tokenizer name to use. 'simple' (default) and 'porter' is supported in the current version.
+    Tokenizer name to use. `simple` (default) and `porter` must be supported.
+    `icu` and `unicode61` could be used if your SQLite libarary used via `DBD::SQLite` module support them.
     See [http://www.sqlite.org/fts3.html\#tokenizer](http://www.sqlite.org/fts3.html\#tokenizer) for more details on FTS4 tokenizers.
-    Future release would support Japanese tokenizer.
+
+    Japanese tokenizer `perl 'Search::Fulltext::Tokenizer::MeCab::tokenizer'` is also available after you install
+    [Search::Fulltext::Tokenizer](http://search.cpan.org/perldoc?Search::Fulltext::Tokenizer) module.
+
+    See ["CUSTOM TOKENIZERS"](#CUSTOM TOKENIZERS) section for developing other tokenizers.
 
 ## Search::Fulltext->search
 
@@ -75,19 +86,20 @@ Search terms in documents by query language.
 
     See [http://www.sqlite.org/fts3.html\#section\_3](http://www.sqlite.org/fts3.html\#section\_3) for detail.
 
+# CUSTOM TOKENIZERS
+
+Custom tokenizers can be implemented by pure perl thanks to ["Perl tokenizers" in DBD::SQLite](http://search.cpan.org/perldoc?DBD::SQLite#Perl tokenizers).
+[Search::Fulltext::Tokenizer::MeCab](http://search.cpan.org/perldoc?Search::Fulltext::Tokenizer::MeCab) is an example of custom tokenizers.
+
+See ["Perl tokenizers" in DBD::SQLite](http://search.cpan.org/perldoc?DBD::SQLite#Perl tokenizers) and [Search::Fulltext::Tokenizer::MeCab](http://search.cpan.org/perldoc?Search::Fulltext::Tokenizer::MeCab) module to learn how to develop custom tokenizers.
+
 # SUPPORTS
 
 Bug reports and pull requests are welcome at [https://github.com/laysakura/Search-Fulltext](https://github.com/laysakura/Search-Fulltext) !
 
 # VERSION
 
-Version 0.05
-
-# TODO
-
-\- Pluggable tokenizer
-
-\- Japanese tokenizer
+Version 1.00
 
 # AUTHOR
 
