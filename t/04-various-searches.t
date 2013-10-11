@@ -5,7 +5,7 @@ use Test::More;
 
 use Search::Fulltext;
 
-plan tests => 8;
+plan tests => 9;
 
 my @docs = (
     'I like beer the best',
@@ -52,6 +52,8 @@ my @docs = (
     # NEAR query
     {
         my $results = $fts->search('beer NEAR happy');
+        is_deeply($results, [2]);
+        $results    = $fts->search('beer NEAR/2 happy');
         is_deeply($results, [2]);
         $results    = $fts->search('beer NEAR/1 happy');
         is_deeply($results, []);
