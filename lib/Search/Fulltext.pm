@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -66,7 +66,7 @@ L<Search::Fulltext> is a fulltext search module. It can be used in a few steps.
 L<Search::Fulltext> has B<pluggable tokenizer> feature, which possibly provides fulltext search for any language.
 Currently, B<English> and B<Japanese> fulltext search are officially supported,
 although any other languages which have spaces for separating words could be also used.
-See L</CUSTOM TOKENIZERS|CUSTOM_TOKENIZERS> section to learn how to search non-English languages.
+See L<CUSTOM TOKENIZERS|/CUSTOM_TOKENIZERS> section to learn how to search non-English languages.
 
 B<SQLite>'s B<FTS4> is used as an indexer.
 Various queries supported by FTS4 (C<AND>, C<OR>, C<NEAR>, ...) are fully provided.
@@ -99,7 +99,7 @@ See L<http://www.sqlite.org/fts3.html#tokenizer> for more details on FTS4 tokeni
 Japanese tokenizer C<perl 'Search::Fulltext::Tokenizer::MeCab::tokenizer'> is also available after you install
 L<Search::Fulltext::Tokenizer::MeCab> module.
 
-See L</CUSTOM TOKENIZERS|CUSTOM_TOKENIZERS> section for developing other tokenizers.
+See L<CUSTOM TOKENIZERS|/CUSTOM_TOKENIZERS> section for developing other tokenizers.
 
 =back
 
@@ -160,7 +160,7 @@ Bug reports and pull requests are welcome at L<https://github.com/laysakura/Sear
 
 =head1 VERSION
 
-Version 1.01
+Version 1.02
 
 =head1 AUTHOR
 

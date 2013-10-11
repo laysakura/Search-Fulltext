@@ -29,7 +29,7 @@ Search::Fulltext - Fulltext search module
 [Search::Fulltext](http://search.cpan.org/perldoc?Search::Fulltext) has __pluggable tokenizer__ feature, which possibly provides fulltext search for any language.
 Currently, __English__ and __Japanese__ fulltext search are officially supported,
 although any other languages which have spaces for separating words could be also used.
-See [/CUSTOM TOKENIZERS](http://search.cpan.org/perldoc?CUSTOM\_TOKENIZERS) section to learn how to search non-English languages.
+See [CUSTOM TOKENIZERS](#CUSTOM\_TOKENIZERS) section to learn how to search non-English languages.
 
 __SQLite__'s __FTS4__ is used as an indexer.
 Various queries supported by FTS4 (`AND`, `OR`, `NEAR`, ...) are fully provided.
@@ -58,7 +58,7 @@ Creates fulltext index for documents.
     Japanese tokenizer `perl 'Search::Fulltext::Tokenizer::MeCab::tokenizer'` is also available after you install
     [Search::Fulltext::Tokenizer::MeCab](http://search.cpan.org/perldoc?Search::Fulltext::Tokenizer::MeCab) module.
 
-    See [/CUSTOM TOKENIZERS](http://search.cpan.org/perldoc?CUSTOM\_TOKENIZERS) section for developing other tokenizers.
+    See [CUSTOM TOKENIZERS](#CUSTOM\_TOKENIZERS) section for developing other tokenizers.
 
 ## Search::Fulltext->search
 
@@ -107,7 +107,7 @@ Bug reports and pull requests are welcome at [https://github.com/laysakura/Searc
 
 # VERSION
 
-Version 1.01
+Version 1.02
 
 # AUTHOR
 
