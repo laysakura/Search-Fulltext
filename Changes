@@ -1,4 +1,5 @@
 {{$NEXT}}
+        - Updates manual
 
 1.00 2013-10-11T01:55:25Z
         - Japansese tokenizer (MeCab tokenizer) support

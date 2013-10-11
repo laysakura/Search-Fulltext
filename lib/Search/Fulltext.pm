@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -64,9 +64,9 @@ Search::Fulltext - Fulltext search module
 L<Search::Fulltext> is a fulltext search module. It can be used in a few steps.
 
 L<Search::Fulltext> has B<pluggable tokenizer> feature, which possibly provides fulltext search for any language.
-Currently, English and Japanese fulltext search are officially supported,
+Currently, B<English> and B<Japanese> fulltext search are officially supported,
 although any other languages which have spaces for separating words could be also used.
-See L</"CUSTOM TOKENIZERS"> section to learn how to search non-English languages.
+See L</CUSTOM TOKENIZERS> section to learn how to search non-English languages.
 
 B<SQLite>'s B<FTS4> is used as an indexer.
 Various queries supported by FTS4 (C<AND>, C<OR>, C<NEAR>, ...) are fully provided.
@@ -93,13 +93,13 @@ File path to write fulltext index. By default, on-memory index is used.
 =item C<@param tokenizer> B<[optional]>
 
 Tokenizer name to use. C<simple> (default) and C<porter> must be supported.
-C<icu> and C<unicode61> could be used if your SQLite libarary used via C<DBD::SQLite> module support them.
+C<icu> and C<unicode61> could be used if your SQLite libarary used via L<DBD::SQLite> module support them.
 See L<http://www.sqlite.org/fts3.html#tokenizer> for more details on FTS4 tokenizers.
 
 Japanese tokenizer C<perl 'Search::Fulltext::Tokenizer::MeCab::tokenizer'> is also available after you install
-L<Search::Fulltext::Tokenizer> module.
+L<Search::Fulltext::Tokenizer::MeCab> module.
 
-See L</"CUSTOM TOKENIZERS"> section for developing other tokenizers.
+See L</CUSTOM TOKENIZERS> section for developing other tokenizers.
 
 =back
 
@@ -149,10 +149,10 @@ Check the document of each tokenizer before using complex queries.
 
 =head1 CUSTOM TOKENIZERS
 
-Custom tokenizers can be implemented by pure perl thanks to L<DBD::SQLite/"Perl tokenizers">.
+Custom tokenizers can be implemented by pure perl thanks to L<DBD::SQLite/Perl_tokenizers>.
 L<Search::Fulltext::Tokenizer::MeCab> is an example of custom tokenizers.
 
-See L<DBD::SQLite/"Perl tokenizers"> and L<Search::Fulltext::Tokenizer::MeCab> module to learn how to develop custom tokenizers.
+See L<DBD::SQLite/Perl_tokenizers> and L<Search::Fulltext::Tokenizer::MeCab> module to learn how to develop custom tokenizers.
 
 =head1 SUPPORTS
 
@@ -160,7 +160,7 @@ Bug reports and pull requests are welcome at L<https://github.com/laysakura/Sear
 
 =head1 VERSION
 
-Version 1.00
+Version 1.01
 
 =head1 AUTHOR
 
