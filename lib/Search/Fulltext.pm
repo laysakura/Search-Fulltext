@@ -45,7 +45,6 @@ Search::Fulltext - Fulltext search module
 
     use Search::Fulltext;
     
-    my $query = 'beer';
     my @docs = (
         'I like beer the best',
         'Wine makes people saticefied',  # does not include beer
@@ -55,8 +54,10 @@ Search::Fulltext - Fulltext search module
     my $fts = Search::Fulltext->new({
         docs => \@docs,
     });
-    my $results = $fts->search($query);
+    my $results = $fts->search('beer');
     is_deeply($results, [0, 2]);         # 1st & 3rd doc include 'beer'
+    my $results = $fts->search('beer AND happy');
+    is_deeply($results, [2]);            # 3rd doc includes both 'beer' & 'happy'
 
 =head1 DESCRIPTION
 
@@ -69,7 +70,7 @@ See L</"CUSTOM TOKENIZERS"> section to learn how to search non-English languages
 
 B<SQLite>'s B<FTS4> is used as an indexer.
 Various queries supported by FTS4 (C<AND>, C<OR>, C<NEAR>, ...) are fully provided.
-See L<< Search::Fulltext->search >> section for types of queries.
+See L</QUERIES> section for details.
 
 =head1 METHODS
 
@@ -119,6 +120,14 @@ Array of indexes of C<docs> passed through C<< Search::Fulltext->new >> in which
 =item C<@param query>
 
 Query to search from documents.
+See L</QUERIES> section for types of queries.
+
+=back
+
+=cut
+
+=head1 QUERIES
+
 The simplest query would be a term.
 
     my $results = $fts->search('beer');
@@ -133,11 +142,10 @@ Other queries below and combination of them can be also used.
     my $results = $fts->search('beer NEAR happy');
     my $results = $fts->search('beer NEAR/1 happy');
 
-See L<http://www.sqlite.org/fts3.html#section_3> for detail.
+See L<http://www.sqlite.org/fts3.html#section_3> for an explanation of each type of query.
 
-=back
-
-=cut
+B<NOTE:> Some custom tokenizers might not support full of these queries above.
+Check the document of each tokenizer before using complex queries.
 
 =head1 CUSTOM TOKENIZERS
 
