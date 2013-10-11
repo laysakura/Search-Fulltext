@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use utf8;
 
-our $VERSION = '0.05';
+our $VERSION = '1.00';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -43,6 +43,8 @@ Search::Fulltext - Fulltext search module
 
 =head1 SYNOPSIS
 
+    use Search::Fulltext;
+    
     my $query = 'beer';
     my @docs = (
         'I like beer the best',
@@ -58,13 +60,16 @@ Search::Fulltext - Fulltext search module
 
 =head1 DESCRIPTION
 
-Search::Fulltext is a fulltext search module. It can be used in a few steps.
+L<Search::Fulltext> is a fulltext search module. It can be used in a few steps.
 
-Languages not separated by white spaces (unlike English, like Japanese) are not supported yet,
-although future version would support it.
+L<Search::Fulltext> has B<pluggable tokenizer> feature, which possibly provides fulltext search for any language.
+Currently, English and Japanese fulltext search are officially supported,
+although any other languages which have spaces for separating words could be also used.
+See L</"CUSTOM TOKENIZERS"> section to learn how to search non-English languages.
 
-Currently SQLite's FTS4 is used as an indexer.
-Various queries supported by FTS4 (AND, OR, NEAR, ...) are fully provided.
+B<SQLite>'s B<FTS4> is used as an indexer.
+Various queries supported by FTS4 (C<AND>, C<OR>, C<NEAR>, ...) are fully provided.
+See L<< Search::Fulltext->search >> section for types of queries.
 
 =head1 METHODS
 
@@ -86,9 +91,14 @@ File path to write fulltext index. By default, on-memory index is used.
 
 =item C<@param tokenizer> B<[optional]>
 
-Tokenizer name to use. 'simple' (default) and 'porter' is supported in the current version.
+Tokenizer name to use. C<simple> (default) and C<porter> must be supported.
+C<icu> and C<unicode61> could be used if your SQLite libarary used via C<DBD::SQLite> module support them.
 See L<http://www.sqlite.org/fts3.html#tokenizer> for more details on FTS4 tokenizers.
-Future release would support Japanese tokenizer.
+
+Japanese tokenizer C<perl 'Search::Fulltext::Tokenizer::MeCab::tokenizer'> is also available after you install
+L<Search::Fulltext::Tokenizer> module.
+
+See L</"CUSTOM TOKENIZERS"> section for developing other tokenizers.
 
 =back
 
@@ -129,19 +139,20 @@ See L<http://www.sqlite.org/fts3.html#section_3> for detail.
 
 =cut
 
+=head1 CUSTOM TOKENIZERS
+
+Custom tokenizers can be implemented by pure perl thanks to L<DBD::SQLite/"Perl tokenizers">.
+L<Search::Fulltext::Tokenizer::MeCab> is an example of custom tokenizers.
+
+See L<DBD::SQLite/"Perl tokenizers"> and L<Search::Fulltext::Tokenizer::MeCab> module to learn how to develop custom tokenizers.
+
 =head1 SUPPORTS
 
 Bug reports and pull requests are welcome at L<https://github.com/laysakura/Search-Fulltext> !
 
 =head1 VERSION
 
-Version 0.05
-
-=head1 TODO
-
-- Pluggable tokenizer
-
-- Japanese tokenizer
+Version 1.00
 
 =head1 AUTHOR
 
