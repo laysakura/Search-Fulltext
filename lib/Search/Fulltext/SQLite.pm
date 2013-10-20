@@ -49,15 +49,9 @@ sub _make_fts4_index {
     $dbh->do("CREATE VIRTUAL TABLE " . TABLE . " USING fts4(" . CONTENT_COL . ", tokenize=$tokenizer)");
 
     $dbh->begin_work;
-    foreach (@{$self->{docs}}) {
-        $dbh->do("INSERT INTO " . TABLE . " (" . CONTENT_COL . ") VALUES ('$_')");
-    }
-    # FIXME: This code must be faster but produce segmentation fault...
-    # foreach (@{$self->{docs}}) {
-    #     my $sth = $dbh->prepare("INSERT INTO " . TABLE . " (" . CONTENT_COL . ") VALUES ('?')");
-    #     $sth->execute($_) foreach (@{$self->{docs}});
-    #     $sth->finish;
-    # }
+    my $sth = $dbh->prepare("INSERT INTO " . TABLE . " (" . CONTENT_COL . ") VALUES (?)");
+    $sth->execute($_) for @{$self->{docs}};
+    $sth->finish;
     $dbh->commit;
 }
 
@@ -67,9 +61,8 @@ sub search_docids {
     my $sth = $dbh->prepare("SELECT " . DOCID_COL . "-1 FROM " . TABLE . " WHERE " . CONTENT_COL . " MATCH ?");
     $sth->execute($query);
     my @docids = ();
-    while (my @row = $sth->fetchrow_array) {
-        push @docids, $row[0];
-    }
+    while (my @row = $sth->fetchrow_array) { push @docids, $row[0] }
+    $sth->finish;
     \@docids;
 }
 
