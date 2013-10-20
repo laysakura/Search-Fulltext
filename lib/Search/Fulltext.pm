@@ -5,7 +5,7 @@ use utf8;
 
 use Carp;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 use Search::Fulltext::SQLite;
 
 sub new {
@@ -162,7 +162,7 @@ Bug reports and pull requests are welcome at L<https://github.com/laysakura/Sear
 
 =head1 VERSION
 
-Version 1.02
+Version 1.03
 
 =head1 AUTHOR
 

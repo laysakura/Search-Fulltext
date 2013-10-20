@@ -107,7 +107,7 @@ Bug reports and pull requests are welcome at [https://github.com/laysakura/Searc
 
 # VERSION
 
-Version 1.02
+Version 1.03
 
 # AUTHOR
 
