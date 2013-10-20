@@ -50,6 +50,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
             "DBD::SQLite" : "1.30_01",
             "DBI" : "0"
          }

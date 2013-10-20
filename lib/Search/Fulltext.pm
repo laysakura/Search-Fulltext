@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use utf8;
 
+use Carp;
+
 our $VERSION = '1.02';
 use Search::Fulltext::SQLite;
 
@@ -10,7 +12,7 @@ sub new {
     my ($class, @args) = @_;
     my %args = ref $args[0] eq 'HASH' ? %{$args[0]} : @args;
 
-    unless ($args{docs}) { die "'docs' is required for creating new instance of $class" }
+    unless ($args{docs}) { croak "'docs' is required for creating new instance of $class" }
     $args{index_file} = ":memory:" unless defined $args{index_file};
     $args{tokenizer}  = "simple"   unless defined $args{tokenizer};
     $args{sqliteh}    = Search::Fulltext::SQLite::->new(
